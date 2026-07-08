@@ -18,6 +18,8 @@ protocol, runner pointer, rubric pointer, result directories, verdict contract,
 and validation tests. It does not run the main benchmark runner and does not
 generate model prompts, answers, events, score records, or judge outputs.
 
+本仓库一切结果均为诊断/训练性质，不构成 Mindthus 认证。
+
 The fixture schema in `fixtures/brake/dev_cases.jsonl` is provisional because
 the named main runner, `scripts/run-judgment-benchmark-cli.py`, is not present
 in the public `rv198-star/Mindthus` repository at inspection time. The cases are
@@ -65,3 +67,5 @@ python3 -m unittest discover -s tests
 
 This checks repository shape, public fixture JSONL shape, and shadow leakage
 guards. It does not prove model behavior or benchmark pass status.
+
+The same command is enforced by GitHub Actions on push and pull request.

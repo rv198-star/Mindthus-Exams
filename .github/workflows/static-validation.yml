@@ -1,0 +1,15 @@
+name: Static Validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  static-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run static rig tests
+        run: python3 -m unittest discover -s tests

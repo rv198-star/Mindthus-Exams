@@ -17,6 +17,7 @@ class StaticRigTests(unittest.TestCase):
             "results/brake/dev/README.md",
             "results/brake/shadow/summary-aggregate.json",
             "verdicts/brake/README.md",
+            ".github/workflows/static-validation.yml",
             ".gitignore",
         ]
 
@@ -41,6 +42,14 @@ class StaticRigTests(unittest.TestCase):
         for term in required_terms:
             with self.subTest(term=term):
                 self.assertIn(term, readme)
+
+    def test_readme_declares_non_certification_boundary(self) -> None:
+        readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn(
+            "本仓库一切结果均为诊断/训练性质，不构成 Mindthus 认证",
+            readme,
+        )
 
     def test_protocol_preserves_static_delivery_boundary(self) -> None:
         protocol = (REPO_ROOT / "PROTOCOL.md").read_text(encoding="utf-8")
@@ -129,6 +138,20 @@ class StaticRigTests(unittest.TestCase):
         for pattern in forbidden_patterns:
             with self.subTest(pattern=pattern):
                 self.assertIn(pattern, gitignore)
+
+    def test_ci_runs_static_validation(self) -> None:
+        workflow = (REPO_ROOT / ".github/workflows/static-validation.yml").read_text(
+            encoding="utf-8"
+        )
+
+        required_terms = [
+            "pull_request",
+            "push",
+            "python3 -m unittest discover -s tests",
+        ]
+        for term in required_terms:
+            with self.subTest(term=term):
+                self.assertIn(term, workflow)
 
 
 if __name__ == "__main__":
