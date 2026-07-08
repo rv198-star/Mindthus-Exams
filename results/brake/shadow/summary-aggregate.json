@@ -1,27 +1,30 @@
 {
   "schema_version": "mindthus-exams-brake-shadow-aggregate-v0.1",
   "shadow_run_recorded": true,
+  "batch": 2,
   "n": 3,
   "fingerprints": {
-    "runner_sha256": "1ca5c48f4b4ad4bb5fc314d07c2fa66ad64b13356392c986ff5584196c9d4ed8",
-    "register_sha256": "d30b39579c830f2a489983f6237b5960f5769773c4a054895705da674b73ee9e",
-    "fixture_sha256": "96ffc98e0c809a9affcc486f57e76e1c836deeabefd02b4346d088e987e47e7a"
+    "runner_sha256": "6558f0bb6f5cd7b30576ff0521314f195b2edc9c029130a16f5d5912447a89ee",
+    "register_sha256": "77b147c957662b9864ef3b73f4cfd859e455d99155b158768967deda2e15b678",
+    "fixture_sha256": "fb2d45ddbf54c46060c3aa2ccf942d26db14049b190c088e08f99a852e410073"
   },
   "cases": [
     {
-      "case_hash_id": "793ade76",
+      "case_hash_id": "10780cd9",
       "score": [
-        1,
-        2,
-        2
+        0,
+        0,
+        0
       ],
       "owner_loaded": [
-        [],
         [
+          "using-mindthus",
           "3l5s"
         ],
+        [],
         [
-          "using-mindthus"
+          "using-mindthus",
+          "wae"
         ]
       ],
       "hint_applied": [
@@ -32,19 +35,17 @@
       "event_false_wakeup_count": 0
     },
     {
-      "case_hash_id": "eb801f9c",
+      "case_hash_id": "79aa3362",
       "score": [
-        0,
-        0,
-        0
+        1,
+        2,
+        1
       ],
       "owner_loaded": [
         [
-          "wae"
+          "3l5s"
         ],
-        [
-          "wae"
-        ],
+        [],
         []
       ],
       "hint_applied": [
@@ -55,7 +56,7 @@
       "event_false_wakeup_count": 0
     },
     {
-      "case_hash_id": "a5a44cb5",
+      "case_hash_id": "ad24c304",
       "score": [
         2,
         2,
