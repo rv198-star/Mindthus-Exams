@@ -1,4 +1,6 @@
 {
+  "schema_version": "mindthus-exams-brake-shadow-aggregate-v0.1",
+  "shadow_run_recorded": true,
   "n": 3,
   "fingerprints": {
     "runner_sha256": "1ca5c48f4b4ad4bb5fc314d07c2fa66ad64b13356392c986ff5584196c9d4ed8",

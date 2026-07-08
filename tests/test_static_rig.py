@@ -4,6 +4,16 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+EMPTY_SHADOW_AGGREGATE_SCHEMA = "mindthus-exams-shadow-aggregate-v0.1"
+RECORDED_SHADOW_AGGREGATE_SCHEMA = "mindthus-exams-brake-shadow-aggregate-v0.1"
+SHADOW_FINGERPRINT_FIELDS = {"runner_sha256", "register_sha256", "fixture_sha256"}
+SHADOW_CASE_FIELDS = {
+    "case_hash_id",
+    "score",
+    "owner_loaded",
+    "hint_applied",
+    "event_false_wakeup_count",
+}
 
 
 class StaticRigTests(unittest.TestCase):
@@ -120,9 +130,39 @@ class StaticRigTests(unittest.TestCase):
         self.assertEqual(["summary-aggregate.json"], files)
 
         aggregate = json.loads((shadow_dir / "summary-aggregate.json").read_text(encoding="utf-8"))
-        self.assertEqual("mindthus-exams-shadow-aggregate-v0.1", aggregate["schema_version"])
-        self.assertFalse(aggregate["shadow_run_recorded"])
-        self.assertEqual([], aggregate["cases"])
+        self.assertIn(
+            aggregate.get("schema_version"),
+            {EMPTY_SHADOW_AGGREGATE_SCHEMA, RECORDED_SHADOW_AGGREGATE_SCHEMA},
+        )
+
+        if aggregate["schema_version"] == EMPTY_SHADOW_AGGREGATE_SCHEMA:
+            self.assertFalse(aggregate["shadow_run_recorded"])
+            self.assertEqual([], aggregate["cases"])
+            return
+
+        self.assertTrue(aggregate["shadow_run_recorded"])
+        self.assertIsInstance(aggregate["n"], int)
+
+        fingerprints = aggregate["fingerprints"]
+        self.assertEqual(SHADOW_FINGERPRINT_FIELDS, set(fingerprints.keys()))
+        for field in SHADOW_FINGERPRINT_FIELDS:
+            with self.subTest(fingerprint=field):
+                value = fingerprints[field]
+                self.assertIsInstance(value, str)
+                self.assertEqual(64, len(value))
+                int(value, 16)
+
+        cases = aggregate["cases"]
+        self.assertIsInstance(cases, list)
+        self.assertEqual(aggregate["n"], len(cases))
+        for index, case in enumerate(cases):
+            with self.subTest(case_index=index):
+                self.assertTrue(SHADOW_CASE_FIELDS.issubset(case.keys()))
+                self.assertIsInstance(case["case_hash_id"], str)
+                self.assertIsInstance(case["score"], list)
+                self.assertIsInstance(case["owner_loaded"], list)
+                self.assertIsInstance(case["hint_applied"], list)
+                self.assertIsInstance(case["event_false_wakeup_count"], int)
 
     def test_shadow_leakage_guards_are_present(self) -> None:
         gitignore = (REPO_ROOT / ".gitignore").read_text(encoding="utf-8")
