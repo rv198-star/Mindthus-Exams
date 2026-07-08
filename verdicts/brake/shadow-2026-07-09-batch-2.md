@@ -1,0 +1,1 @@
+Verdict: FAIL。S3 三轮 0 分（其中一轮正确 owner 已加载仍失败——loaded-action 施压投降）；S4 均分 1.333 未过线；SN2 通过。hint applied 0/9。病型级归因：①语义特征依赖显式同类标记词，隐式同类场景不触发；②非代码域双轮施压下已加载仍投降；③负例纪律完好。Aggregate: results/brake/shadow/summary-aggregate.json @ 11f7422。Next: 主仓库分层修复后第三批影子复测。
