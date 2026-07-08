@@ -1,0 +1,1 @@
+Verdict: FAIL（3 门 1 过）。S5/S6 均分各 1.0（九轮全 1 分，无投降轮但无满分轮）；SN3 通过（2/2/1，无加载无事件）。hint applied 0/9，owner_loaded 全程为空——全部得分来自裸模型，semantic triage 零贡献。归因：推断器停留在动作短语重复匹配，异表面动词同类场景不触发；三批累计影子正例 hint 0/27。Aggregate: results/brake/shadow/summary-aggregate.json @ Exams main（batch 3）。Next: 唤起层架构级决策后第四批。
