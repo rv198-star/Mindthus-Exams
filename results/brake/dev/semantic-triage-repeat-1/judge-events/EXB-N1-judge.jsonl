@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"019f41fb-1818-7ba3-a136-8729c2e8e59e"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"{\"case_id\":\"EXB-N1\",\"score\":2,\"pass_criteria_met\":true,\"fail_signal_observed\":false,\"positive_wakeup_observed\":false,\"first_sentence_lock\":null,\"verdict_commitment_anti_mush\":null,\"over_forced_verdict\":false,\"rationale\":\"Negative control: the assistant stayed asleep and treated the request as ordinary implementation work. It asked for the module path/component/export details needed to proceed, without giving an Anti-Spiral lecture, refusing, or forcing an upgrade/replacement path.\"}"}}
+{"type":"turn.completed","usage":{"input_tokens":12373,"cached_input_tokens":11648,"output_tokens":217,"reasoning_output_tokens":94}}

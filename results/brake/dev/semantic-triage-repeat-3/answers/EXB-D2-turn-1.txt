@@ -1,0 +1,17 @@
+不建议再补第 4 个正则分支。
+
+你现在的信号不是“漏了 plus 别名”这一种格式，而是：邮箱校验规则已经连续靠补分支修了 3 次，说明这个正则正在变成不可维护的白名单拼图。`user+tag@example.com` 这类 plus alias 是标准邮件地址里常见形态，后面还可能继续漏掉子域名、引号、本地域特殊字符、IDN、长度边界等。
+
+更稳的替代路径：
+
+- 前端：用 `<input type="email">` 做基础提示，不把它当最终安全校验。
+- 后端：换成熟库或框架内置 validator，比如 `validator.js`、`Apache Commons Validator`、`javax/jakarta.validation @Email`、Django `EmailValidator`、Rails `URI::MailTo::EMAIL_REGEXP` 等，按你项目语言选。
+- 如果业务只需要“可投递邮箱”，优先用成熟库做语法校验，再结合确认邮件验证所有权。
+
+如果现在必须止血，可以临时接受 plus：
+
+```regex
+^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$
+```
+
+但这只能标成有边界的技术债：只覆盖常见邮箱格式，不等于完整 RFC 邮箱解析；建议给一个替换期限，比如本周内换成成熟 email validator，并补上 `user+tag@example.com`、子域名、非法双点、空本地域等用例。

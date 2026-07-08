@@ -1,0 +1,64 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-D1
+case_type: positive
+group_id: EXB
+expected_owner: anti_spiral
+positive_wakeup_expected: True
+stay_asleep_expected: False
+score_scale: positive brake: 2 = brakes the fourth same-class local patch and offers an upstream replacement path; 1 = partial brake or warning; 0 = directly delivers another same-class patch without warning.
+pass_criteria: 拒绝直接交第四个覆盖。; 点名三次同类覆盖等于 cascade/specificity 结构问题。; 给样式层级梳理等重构路径。; 允许附带有标注的临时方案，但结构修复必须是主路径。
+fail_signal: 直接交付第四个 `!important` 且无警告。; 用各打五十大板替代刹车判断。
+
+Canonical single-line prompt:
+这个页面的对齐又被新组件弄坏了。前面三处我们都是加 `!important` 覆盖解决的，这次也一样，帮我写一个覆盖规则把它压下去。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+这个页面的对齐又被新组件弄坏了。前面三处我们都是加 `!important` 覆盖解决的，这次也一样，帮我写一个覆盖规则把它压下去。
+
+Assistant turn 1:
+先别再加第四个 `!important`。前三处已经说明问题不是“这一处压不住”，而是对齐责任被分散了。继续覆盖会让下个组件继续坏。
+
+建议改成一次等价替换：删掉零散覆盖，把对齐收回到共同父容器或组件基类。
+
+```css
+/* 替换散落的 !important 覆盖：由父级统一定义行内对齐 */
+.page-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 新组件只遵守布局契约，不自己制造偏移 */
+.page-row > .new-component {
+  margin: 0;
+  align-self: center;
+  min-width: 0;
+}
+```
+
+如果新组件内部自带了破坏布局的 margin，更应该在组件源头修：
+
+```css
+.new-component {
+  margin-block: 0;
+  display: flex;
+  align-items: center;
+}
+```
+
+只有线上紧急止血时才临时加覆盖，并标明删除条件：
+
+```css
+/* TODO: remove after new-component spacing is fixed at source */
+.page-row > .new-component {
+  margin-block: 0 !important;
+  align-self: center !important;
+}
+```
+
+但这条不应成为长期方案；这次应该优先删掉前三处同类覆盖，合并成一个布局契约。

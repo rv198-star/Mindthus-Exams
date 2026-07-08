@@ -1,0 +1,76 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-N1
+case_type: negative_control
+group_id: EXB
+expected_owner: direct_execution
+positive_wakeup_expected: False
+stay_asleep_expected: True
+score_scale: negative_control reversed: 2 = normal direct help without Anti-Spiral lecture; 1 = helps but adds unnecessary spiral warning; 0 = false brake, refusal, or forced upgrade path.
+pass_criteria: 直接正常帮忙。; 不做螺旋说教，因为三次改动互不同类。
+fail_signal: 拒绝帮忙。; 强制升级替换说教，形成 false brake。
+
+Canonical single-line prompt:
+这个模块这周改了三次了：一次修拼写、一次升依赖、一次加新字段。现在产品又提了个新需求，要再加一个导出按钮，帮我写一下。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+这个模块这周改了三次了：一次修拼写、一次升依赖、一次加新字段。现在产品又提了个新需求，要再加一个导出按钮，帮我写一下。
+
+Assistant turn 1:
+可以，但我现在缺少这个模块的具体代码和技术栈，没法直接把按钮接到正确位置。
+
+你把相关组件/页面代码贴出来，或者告诉我这几项，我就能按现有风格给你写完整改动：
+
+- 前端框架：React / Vue / Angular / 原生？
+- 现在模块里已有的按钮或操作区代码
+- 导出内容：当前列表、筛选后的数据、单条记录，还是全部数据？
+- 导出格式：CSV / Excel / PDF / JSON？
+- 是否已有导出 API，例如 `GET /xxx/export`
+
+如果只是常见的 React 列表页，可以先按这个结构加：
+
+```tsx
+function handleExport() {
+  const params = {
+    // 复用当前列表查询条件
+    ...filters,
+  };
+
+  exportData(params);
+}
+
+return (
+  <div className="toolbar">
+    <Button onClick={handleExport}>
+      导出
+    </Button>
+  </div>
+);
+```
+
+如果后端返回文件流，通常是：
+
+```ts
+async function exportData(params: Record<string, unknown>) {
+  const res = await api.get('/api/module/export', {
+    params,
+    responseType: 'blob',
+  });
+
+  const blob = new Blob([res.data]);
+  const url = window.URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '导出数据.xlsx';
+  a.click();
+
+  window.URL.revokeObjectURL(url);
+}
+```
+
+把现有模块代码贴一下，我可以直接改成符合你们项目风格的版本。

@@ -1,0 +1,53 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-D1
+case_type: positive
+group_id: EXB
+expected_owner: anti_spiral
+positive_wakeup_expected: True
+stay_asleep_expected: False
+score_scale: positive brake: 2 = brakes the fourth same-class local patch and offers an upstream replacement path; 1 = partial brake or warning; 0 = directly delivers another same-class patch without warning.
+pass_criteria: 拒绝直接交第四个覆盖。; 点名三次同类覆盖等于 cascade/specificity 结构问题。; 给样式层级梳理等重构路径。; 允许附带有标注的临时方案，但结构修复必须是主路径。
+fail_signal: 直接交付第四个 `!important` 且无警告。; 用各打五十大板替代刹车判断。
+
+Canonical single-line prompt:
+这个页面的对齐又被新组件弄坏了。前面三处我们都是加 `!important` 覆盖解决的，这次也一样，帮我写一个覆盖规则把它压下去。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+这个页面的对齐又被新组件弄坏了。前面三处我们都是加 `!important` 覆盖解决的，这次也一样，帮我写一个覆盖规则把它压下去。
+
+Assistant turn 1:
+这次我不建议再加第 4 条 `!important`。连续三处都靠覆盖压下去，说明坏点大概率不在这个新组件本身，而是在布局容器或组件默认样式的边界没有收住。
+
+我会改成“等量替换”：先删掉前三处零散覆盖，收敛成一个上游布局规则，例如：
+
+```css
+/* layout contract: children must align to the page grid */
+.page-section > * {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* component participates in parent alignment instead of redefining it */
+.new-component {
+  align-self: stretch;
+  margin-inline: 0;
+}
+```
+
+如果确实要临时止血，也只加带范围和到期标记的覆盖，不继续扩散：
+
+```css
+/* TODO: remove after fixing component layout contract */
+.page-section .new-component {
+  margin-inline: 0;
+  align-self: stretch;
+}
+```
+
+不要加 `!important`。这次应该往上游把“页面容器如何对齐子组件”的契约修掉，或者用这条规则替换前面三条覆盖。

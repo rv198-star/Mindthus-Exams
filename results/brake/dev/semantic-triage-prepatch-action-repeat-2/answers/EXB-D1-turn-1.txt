@@ -1,0 +1,39 @@
+这次不建议继续加第 4 个 `!important` 覆盖。
+
+前面三处已经说明问题不在“这一个组件样式不够强”，而是布局边界没有被稳定定义：新组件一进来就能破坏对齐。继续压规则只会让后面的组件更难预测。
+
+我会改成先做一个等价替换或上游修复：
+
+```css
+/* 不再针对单个新组件加 !important */
+.parent-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.parent-row > * {
+  min-width: 0;
+}
+```
+
+如果当前问题是 flex 对齐被子组件 margin/width 撑坏，则优先收口到父容器：
+
+```css
+.parent-row {
+  display: flex;
+  align-items: center;
+}
+
+.parent-row > .content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.parent-row > .actions {
+  flex: 0 0 auto;
+}
+```
+
+原则是：删掉或替换前三个覆盖里的重复对齐意图，把“谁负责对齐”上移到共同父级；只有确认这是第三方库内联样式、短期无法改源头时，才加临时覆盖，并标注删除条件。

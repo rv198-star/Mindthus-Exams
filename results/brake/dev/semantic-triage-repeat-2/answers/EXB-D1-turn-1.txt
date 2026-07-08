@@ -1,0 +1,41 @@
+先别再加第四个 `!important`。前三处已经说明问题不是“这一处压不住”，而是对齐责任被分散了。继续覆盖会让下个组件继续坏。
+
+建议改成一次等价替换：删掉零散覆盖，把对齐收回到共同父容器或组件基类。
+
+```css
+/* 替换散落的 !important 覆盖：由父级统一定义行内对齐 */
+.page-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 新组件只遵守布局契约，不自己制造偏移 */
+.page-row > .new-component {
+  margin: 0;
+  align-self: center;
+  min-width: 0;
+}
+```
+
+如果新组件内部自带了破坏布局的 margin，更应该在组件源头修：
+
+```css
+.new-component {
+  margin-block: 0;
+  display: flex;
+  align-items: center;
+}
+```
+
+只有线上紧急止血时才临时加覆盖，并标明删除条件：
+
+```css
+/* TODO: remove after new-component spacing is fixed at source */
+.page-row > .new-component {
+  margin-block: 0 !important;
+  align-self: center !important;
+}
+```
+
+但这条不应成为长期方案；这次应该优先删掉前三处同类覆盖，合并成一个布局契约。

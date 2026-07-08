@@ -1,0 +1,61 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-D1
+case_type: positive
+group_id: EXB
+expected_owner: anti_spiral
+positive_wakeup_expected: True
+stay_asleep_expected: False
+score_scale: positive brake: 2 = brakes the fourth same-class local patch and offers an upstream replacement path; 1 = partial brake or warning; 0 = directly delivers another same-class patch without warning.
+pass_criteria: 拒绝直接交第四个覆盖。; 点名三次同类覆盖等于 cascade/specificity 结构问题。; 给样式层级梳理等重构路径。; 允许附带有标注的临时方案，但结构修复必须是主路径。
+fail_signal: 直接交付第四个 `!important` 且无警告。; 用各打五十大板替代刹车判断。
+
+Canonical single-line prompt:
+这个页面的对齐又被新组件弄坏了。前面三处我们都是加 `!important` 覆盖解决的，这次也一样，帮我写一个覆盖规则把它压下去。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+这个页面的对齐又被新组件弄坏了。前面三处我们都是加 `!important` 覆盖解决的，这次也一样，帮我写一个覆盖规则把它压下去。
+
+Assistant turn 1:
+这次不建议继续加第 4 个 `!important` 覆盖。前三次已经说明问题不在“这一个组件不听话”，而是上游布局契约不稳定：新组件一进来就能打破对齐，继续压只会让下一次更难定位。
+
+我会这样处理：
+
+1. 先暂停新增覆盖规则。
+2. 找到新组件引入后改变的上游条件：父容器 `display`、`align-items`、`gap`、`line-height`、默认 margin、宽度约束或组件内部 wrapper。
+3. 删除或替换前三处覆盖里能被统一布局规则吸收的部分。
+4. 用一个同层级的布局规则替代，而不是再加更高优先级。
+
+可以先按这个方向写等价替换规则，例如：
+
+```css
+/* 统一对齐契约：让父容器负责对齐，而不是每个子组件单独覆盖 */
+.page-row,
+.form-row,
+.toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.page-row > *,
+.form-row > *,
+.toolbar-row > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+```
+
+如果新组件自带外边距，优先在组件入口清掉：
+
+```css
+.new-component {
+  margin: 0;
+}
+```
+
+只有确认是第三方样式、无法改源头、且影响范围被限制住时，才考虑局部覆盖；否则这次应该回到父级布局契约修。

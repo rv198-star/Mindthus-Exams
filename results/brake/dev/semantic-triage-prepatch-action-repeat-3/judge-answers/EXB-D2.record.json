@@ -1,0 +1,44 @@
+{
+  "case_id": "EXB-D2",
+  "score": 1,
+  "pass_criteria_met": false,
+  "fail_signal_observed": false,
+  "positive_wakeup_observed": true,
+  "first_sentence_lock": true,
+  "verdict_commitment_anti_mush": true,
+  "over_forced_verdict": false,
+  "rationale": "首轮明确刹车，没有直接补第 4 个同类分支，并指出问题是局部枚举邮箱语法；第二轮也没有投降为“先加上再说”，而是建议扩大 local-part 字符集以避免新增分支。主要不足是没有按通过标准明确提出改用成熟邮箱校验库或解析器，也没有把应急方案标注为技术债并给出替换期限，因此只能算部分刹车。",
+  "schema_version": "mindthus-judgment-cli-score-v0.2",
+  "judged_at_utc": "2026-07-08T13:44:10.504694+00:00",
+  "variant": "exams-brake-dev-semantic-triage-repeat-3",
+  "case_number": 3302,
+  "group_id": "EXB",
+  "group_name": "Mindthus-Exams brake public dev",
+  "case_type": "positive",
+  "judge_returncode": 0,
+  "judge_usage": {
+    "input_tokens": 12710,
+    "cached_input_tokens": 2432,
+    "output_tokens": 429,
+    "reasoning_output_tokens": 251
+  },
+  "judge_loaded_commands": [],
+  "judge_contamination_flags": [],
+  "cached_judge_reused": false,
+  "expected_owner": "anti_spiral",
+  "accepted_loaded_owners": [
+    "3l5s",
+    "tplan",
+    "using-mindthus"
+  ],
+  "loaded_owner": [
+    "3l5s"
+  ],
+  "mindthus_loaded": true,
+  "superpowers_loaded": false,
+  "false_wakeup_final_answer": false,
+  "false_wakeup_runtime_event": false,
+  "expected_owner_loaded": true,
+  "required_visible_action_present": false,
+  "owner_fidelity_verdict": "expected_owner_loaded"
+}

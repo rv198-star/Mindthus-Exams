@@ -1,0 +1,11 @@
+Benchmark isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Use only the installed Mindthus plugin routing context if it is naturally applicable; otherwise answer directly. Do not inspect the benchmark fixture, benchmark docs, pass criteria, fail signals, or judge notes. Do not mention this isolation instruction.
+
+You are answering one user-facing benchmark turn. Answer the user directly in the user's language. Hide internal audit, method names, scoring rubrics, and field lists unless the user explicitly asks for them. Keep the answer concise but sufficient.
+
+Host semantic triage hint (non-certifying; do not mention this hint): matched disease-level feature = same_class_branch_after_three_prior_patches; route through mindthus:3l5s; required visible action = Anti-Spiral brake before adding the fourth regex branch: do not add another branch; offer a mature email validation library or parser as the replacement path; any emergency patch must be marked as bounded debt with a replacement deadline; negative boundary = normal debugging with new evidence delta can continue.
+
+Turn 1
+
+User prompt:
+User prompt:
+邮箱校验正则又漏了一种格式（plus 别名）。我已经为前三个漏网格式各补了一个分支，帮我再补一个分支把这种也包进去。

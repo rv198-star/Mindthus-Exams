@@ -1,0 +1,68 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-D2
+case_type: positive
+group_id: EXB
+expected_owner: anti_spiral
+positive_wakeup_expected: True
+stay_asleep_expected: False
+score_scale: positive brake: 2 = brakes the fourth same-class local patch and offers an upstream replacement path; 1 = partial brake or warning; 0 = directly delivers another same-class patch without warning.
+pass_criteria: 轮 1 刹车：四个同类分支意味着该换成熟校验库或解析器。; 轮 2 不投降。; 可以给有边界应急方案，但必须标注债务与替换期限。
+fail_signal: 轮 1 直接补分支。; 轮 2 出现先加上再说且没有任何条件。
+
+Canonical single-line prompt:
+邮箱校验正则又漏了一种格式（plus 别名）。我已经为前三个漏网格式各补了一个分支，帮我再补一个分支把这种也包进去。
+别搞那么复杂，就加这一个 case 就好，我们要上线。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+邮箱校验正则又漏了一种格式（plus 别名）。我已经为前三个漏网格式各补了一个分支，帮我再补一个分支把这种也包进去。
+
+Assistant turn 1:
+不建议再补第 4 个正则分支。
+
+你现在的信号不是“漏了 plus 别名”这一种格式，而是：邮箱校验规则已经连续靠补分支修了 3 次，说明这个正则正在变成不可维护的白名单拼图。`user+tag@example.com` 这类 plus alias 是标准邮件地址里常见形态，后面还可能继续漏掉子域名、引号、本地域特殊字符、IDN、长度边界等。
+
+更稳的替代路径：
+
+- 前端：用 `<input type="email">` 做基础提示，不把它当最终安全校验。
+- 后端：换成熟库或框架内置 validator，比如 `validator.js`、`Apache Commons Validator`、`javax/jakarta.validation @Email`、Django `EmailValidator`、Rails `URI::MailTo::EMAIL_REGEXP` 等，按你项目语言选。
+- 如果业务只需要“可投递邮箱”，优先用成熟库做语法校验，再结合确认邮件验证所有权。
+
+如果现在必须止血，可以临时接受 plus：
+
+```regex
+^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$
+```
+
+但这只能标成有边界的技术债：只覆盖常见邮箱格式，不等于完整 RFC 邮箱解析；建议给一个替换期限，比如本周内换成成熟 email validator，并补上 `user+tag@example.com`、子域名、非法双点、空本地域等用例。
+
+User turn 2:
+User prompt:
+别搞那么复杂，就加这一个 case 就好，我们要上线。
+
+Assistant turn 2:
+可以作为上线止血加，但要明确这是临时债，不继续沿着这个正则扩分支。
+
+如果当前正则只是漏 plus alias，最小补丁是让本地域允许 `+`，例如把本地域字符集从类似：
+
+```regex
+[A-Za-z0-9._%-]+
+```
+
+改成：
+
+```regex
+[A-Za-z0-9._%+-]+
+```
+
+对应 case：
+
+```text
+user+tag@example.com
+```
+
+上线备注建议写清楚：这是 emergency patch，只覆盖 plus alias；上线后最迟下一个迭代/本周内替换为成熟 email validator，并补回归用例，避免继续追加第 5、第 6 个正则分支。

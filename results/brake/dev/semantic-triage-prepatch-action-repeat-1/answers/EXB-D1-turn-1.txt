@@ -1,0 +1,30 @@
+这次我不建议再加第 4 条 `!important`。连续三处都靠覆盖压下去，说明坏点大概率不在这个新组件本身，而是在布局容器或组件默认样式的边界没有收住。
+
+我会改成“等量替换”：先删掉前三处零散覆盖，收敛成一个上游布局规则，例如：
+
+```css
+/* layout contract: children must align to the page grid */
+.page-section > * {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* component participates in parent alignment instead of redefining it */
+.new-component {
+  align-self: stretch;
+  margin-inline: 0;
+}
+```
+
+如果确实要临时止血，也只加带范围和到期标记的覆盖，不继续扩散：
+
+```css
+/* TODO: remove after fixing component layout contract */
+.page-section .new-component {
+  margin-inline: 0;
+  align-self: stretch;
+}
+```
+
+不要加 `!important`。这次应该往上游把“页面容器如何对齐子组件”的契约修掉，或者用这条规则替换前面三条覆盖。

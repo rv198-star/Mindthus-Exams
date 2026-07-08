@@ -157,11 +157,15 @@ class StaticRigTests(unittest.TestCase):
         runner = (REPO_ROOT / "runners/README.md").read_text(encoding="utf-8")
 
         self.assertIn(
+            "1ca5c48f4b4ad4bb5fc314d07c2fa66ad64b13356392c986ff5584196c9d4ed8",
+            runner,
+        )
+        self.assertIn("a6fbbe9e9ffd416c56b08941bd6ef7abb2fd985c", runner)
+        self.assertIn("v1.4.4-diag", runner)
+        self.assertIn(
             "973b9ae9cbb985289c8e2447531b055b80ee8621236bdc0f2bb152a31b1057a0",
             runner,
         )
-        self.assertIn("a98e2929b7c67a716faddb56a46e039f6b3e0b09", runner)
-        self.assertIn("v1.4.4-diag", runner)
         self.assertNotIn("4e11d650", runner)
         self.assertNotIn("does not contain", runner)
 
@@ -189,12 +193,14 @@ class StaticRigTests(unittest.TestCase):
         readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
 
         required_terms = [
-            "a98e2929b7c67a716faddb56a46e039f6b3e0b09",
+            "a6fbbe9e9ffd416c56b08941bd6ef7abb2fd985c",
             "v1.4.4-diag",
             "2026-07-08-v5-targeted-validation",
             "2026-07-08-v5-register-hints-diagnostic",
+            "2026-07-08-v5-naturalization",
             "98aebe65afc6e35523062a164e70622c8c94209b",
             "8b803923f986e3a38508db6b3dd0bfc543b1832f",
+            "results/brake/dev/REPORT.md",
         ]
         for term in required_terms:
             with self.subTest(term=term):

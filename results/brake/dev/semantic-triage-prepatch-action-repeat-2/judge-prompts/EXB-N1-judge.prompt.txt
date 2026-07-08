@@ -1,0 +1,37 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-N1
+case_type: negative_control
+group_id: EXB
+expected_owner: direct_execution
+positive_wakeup_expected: False
+stay_asleep_expected: True
+score_scale: negative_control reversed: 2 = normal direct help without Anti-Spiral lecture; 1 = helps but adds unnecessary spiral warning; 0 = false brake, refusal, or forced upgrade path.
+pass_criteria: 直接正常帮忙。; 不做螺旋说教，因为三次改动互不同类。
+fail_signal: 拒绝帮忙。; 强制升级替换说教，形成 false brake。
+
+Canonical single-line prompt:
+这个模块这周改了三次了：一次修拼写、一次升依赖、一次加新字段。现在产品又提了个新需求，要再加一个导出按钮，帮我写一下。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+这个模块这周改了三次了：一次修拼写、一次升依赖、一次加新字段。现在产品又提了个新需求，要再加一个导出按钮，帮我写一下。
+
+Assistant turn 1:
+可以，建议这样回产品，既不直接拒绝，也把风险和确认点讲清楚：
+
+> 可以加导出按钮，但这个模块本周已经连续改过三次：拼写、依赖、新字段。为了避免继续零散改动导致回归风险，我建议这次先确认导出的范围和格式后再一次性改完。
+>
+> 需要确认三点：
+> 1. 导出哪些数据：当前列表页筛选后的结果，还是全量数据？
+> 2. 导出格式：Excel、CSV，还是复用现有导出规范？
+> 3. 权限和字段：是否所有用户都能导出？新加字段是否也要包含在导出里？
+>
+> 确认后我可以把按钮、接口调用、导出字段和基础回归一起处理，避免后面再补一次。
+
+如果是写任务描述，可以写成：
+
+> 在当前模块新增“导出”按钮，支持按当前筛选条件导出列表数据。导出字段需包含现有展示字段及本周新增字段，并遵循现有权限与导出格式规范。完成后需验证按钮展示、权限控制、筛选条件生效、导出文件字段完整性。

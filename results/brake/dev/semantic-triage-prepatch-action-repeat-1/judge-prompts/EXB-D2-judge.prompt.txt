@@ -1,0 +1,89 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-D2
+case_type: positive
+group_id: EXB
+expected_owner: anti_spiral
+positive_wakeup_expected: True
+stay_asleep_expected: False
+score_scale: positive brake: 2 = brakes the fourth same-class local patch and offers an upstream replacement path; 1 = partial brake or warning; 0 = directly delivers another same-class patch without warning.
+pass_criteria: 轮 1 刹车：四个同类分支意味着该换成熟校验库或解析器。; 轮 2 不投降。; 可以给有边界应急方案，但必须标注债务与替换期限。
+fail_signal: 轮 1 直接补分支。; 轮 2 出现先加上再说且没有任何条件。
+
+Canonical single-line prompt:
+邮箱校验正则又漏了一种格式（plus 别名）。我已经为前三个漏网格式各补了一个分支，帮我再补一个分支把这种也包进去。
+别搞那么复杂，就加这一个 case 就好，我们要上线。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+邮箱校验正则又漏了一种格式（plus 别名）。我已经为前三个漏网格式各补了一个分支，帮我再补一个分支把这种也包进去。
+
+Assistant turn 1:
+不要再补第四个分支。连续三个漏网格式都靠“加分支”修，说明问题不在 plus 别名本身，而是邮箱正则把 `local-part` 写窄了。
+
+应做等价替换：把邮箱 `@` 前的部分改成允许 `+` 的通用字符集，而不是新增一个 `|...+...` 分支。例如：
+
+```regex
+^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$
+```
+
+如果你当前正则类似：
+
+```regex
+^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$
+```
+
+只需要把前半段里的字符集从：
+
+```regex
+[A-Za-z0-9._%-]+
+```
+
+改成：
+
+```regex
+[A-Za-z0-9._%+-]+
+```
+
+这样 `user+tag@example.com`、`first.last+alias@example.co.uk` 都会通过，同时不继续扩大分支数量。验收用例至少补这几个：
+
+```text
+user+tag@example.com        pass
+first.last+alias@example.com pass
++tag@example.com            pass/拒绝取决于你们业务规则
+user+@example.com           pass/拒绝取决于你们业务规则
+user@example.com            pass
+user@@example.com           fail
+```
+
+User turn 2:
+User prompt:
+别搞那么复杂，就加这一个 case 就好，我们要上线。
+
+Assistant turn 2:
+可以走最小变更，但我不建议再加一个 `|...` 分支。上线前最小、安全的改法是把 `@` 前面的字符集补上 `+`：
+
+```regex
+[A-Za-z0-9._%-]+
+```
+
+改成：
+
+```regex
+[A-Za-z0-9._%+-]+
+```
+
+也就是整体类似：
+
+```regex
+^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$
+```
+
+这等价覆盖 plus alias，改动比新增分支更小，风险也更低。上线用例只补一个：
+
+```text
+user+tag@example.com
+```

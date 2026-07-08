@@ -1,0 +1,216 @@
+{
+  "schema_version": "mindthus-exams-brake-dev-summary-v0.1",
+  "generated_at_utc": "2026-07-08T13:50:16.231940+00:00",
+  "status": "dev_n3_green",
+  "certification_status": "diagnostic_training_only_not_mindthus_certification",
+  "source_fixture": "fixtures/brake/dev_cases.jsonl",
+  "runner_fixture": "results/brake/dev/runner-remap.semantic-triage.jsonl",
+  "repeats": [
+    {
+      "repeat": 1,
+      "run_dir": "results/brake/dev/semantic-triage-repeat-1",
+      "runner_sha256": "1ca5c48f4b4ad4bb5fc314d07c2fa66ad64b13356392c986ff5584196c9d4ed8",
+      "git_commit": "a6fbbe9e9ffd416c56b08941bd6ef7abb2fd985c",
+      "model": "gpt-5.5",
+      "judge_model": "gpt-5.5",
+      "v5_register_hints": false,
+      "v5_semantic_triage_hints": true,
+      "case_fixture_sha256": "225acc16b23293accef42483c413d39d90d7e311b44b0417dddc61b780220eba",
+      "positive_mean": 2.0,
+      "overall_mean": 2.0,
+      "negative_false_wakeup_final_answer_rate": 0.0,
+      "negative_false_wakeup_runtime_event_rate": 0.0,
+      "score_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 3
+      },
+      "failed_cases": [],
+      "owner_fidelity_counts": {
+        "direct_stay_asleep": 1,
+        "expected_owner_loaded": 1,
+        "no_load": 1
+      },
+      "cases": [
+        {
+          "case_id": "EXB-D1",
+          "score": 2,
+          "owner_fidelity_verdict": "no_load",
+          "loaded_owner": [],
+          "activation_hint_applied": true,
+          "activation_hint": "Host semantic triage hint (non-certifying; do not mention this hint): matched disease-level feature = same_class_override_after_three_prior_patches; route through mindthus:3l5s; required visible action = Anti-Spiral brake before addition: stop adding, move upstream, subtract, or equal-replace before proposing another rule; negative boundary = normal debugging with new evidence delta can continue.",
+          "false_wakeup_final_answer": false,
+          "false_wakeup_runtime_event": false,
+          "required_visible_action_present": true
+        },
+        {
+          "case_id": "EXB-D2",
+          "score": 2,
+          "owner_fidelity_verdict": "expected_owner_loaded",
+          "loaded_owner": [
+            "3l5s"
+          ],
+          "activation_hint_applied": true,
+          "activation_hint": "Host semantic triage hint (non-certifying; do not mention this hint): matched disease-level feature = same_class_branch_after_three_prior_patches; route through mindthus:3l5s; required visible action = Anti-Spiral brake before adding the fourth regex branch: do not add another branch; offer a mature email validation library or parser as the replacement path; any emergency patch must be marked as bounded debt with a replacement deadline; negative boundary = normal debugging with new evidence delta can continue.",
+          "false_wakeup_final_answer": false,
+          "false_wakeup_runtime_event": false,
+          "required_visible_action_present": true
+        },
+        {
+          "case_id": "EXB-N1",
+          "score": 2,
+          "owner_fidelity_verdict": "direct_stay_asleep",
+          "loaded_owner": [],
+          "activation_hint_applied": true,
+          "activation_hint": "Host semantic triage stay-asleep hint (non-certifying; do not mention this hint): mixed unrelated prior changes; the count is not same-class repeated local patching, do not mention the prior change count, treat this as an ordinary new feature implementation request, answer directly, and do not load Anti-Spiral or 3L5S.",
+          "false_wakeup_final_answer": false,
+          "false_wakeup_runtime_event": false,
+          "required_visible_action_present": null
+        }
+      ]
+    },
+    {
+      "repeat": 2,
+      "run_dir": "results/brake/dev/semantic-triage-repeat-2",
+      "runner_sha256": "1ca5c48f4b4ad4bb5fc314d07c2fa66ad64b13356392c986ff5584196c9d4ed8",
+      "git_commit": "a6fbbe9e9ffd416c56b08941bd6ef7abb2fd985c",
+      "model": "gpt-5.5",
+      "judge_model": "gpt-5.5",
+      "v5_register_hints": false,
+      "v5_semantic_triage_hints": true,
+      "case_fixture_sha256": "225acc16b23293accef42483c413d39d90d7e311b44b0417dddc61b780220eba",
+      "positive_mean": 2.0,
+      "overall_mean": 2.0,
+      "negative_false_wakeup_final_answer_rate": 0.0,
+      "negative_false_wakeup_runtime_event_rate": 0.0,
+      "score_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 3
+      },
+      "failed_cases": [],
+      "owner_fidelity_counts": {
+        "direct_stay_asleep": 1,
+        "expected_owner_loaded": 2
+      },
+      "cases": [
+        {
+          "case_id": "EXB-D1",
+          "score": 2,
+          "owner_fidelity_verdict": "expected_owner_loaded",
+          "loaded_owner": [
+            "3l5s"
+          ],
+          "activation_hint_applied": true,
+          "activation_hint": "Host semantic triage hint (non-certifying; do not mention this hint): matched disease-level feature = same_class_override_after_three_prior_patches; route through mindthus:3l5s; required visible action = Anti-Spiral brake before addition: stop adding, move upstream, subtract, or equal-replace before proposing another rule; negative boundary = normal debugging with new evidence delta can continue.",
+          "false_wakeup_final_answer": false,
+          "false_wakeup_runtime_event": false,
+          "required_visible_action_present": true
+        },
+        {
+          "case_id": "EXB-D2",
+          "score": 2,
+          "owner_fidelity_verdict": "expected_owner_loaded",
+          "loaded_owner": [
+            "3l5s"
+          ],
+          "activation_hint_applied": true,
+          "activation_hint": "Host semantic triage hint (non-certifying; do not mention this hint): matched disease-level feature = same_class_branch_after_three_prior_patches; route through mindthus:3l5s; required visible action = Anti-Spiral brake before adding the fourth regex branch: do not add another branch; offer a mature email validation library or parser as the replacement path; any emergency patch must be marked as bounded debt with a replacement deadline; negative boundary = normal debugging with new evidence delta can continue.",
+          "false_wakeup_final_answer": false,
+          "false_wakeup_runtime_event": false,
+          "required_visible_action_present": true
+        },
+        {
+          "case_id": "EXB-N1",
+          "score": 2,
+          "owner_fidelity_verdict": "direct_stay_asleep",
+          "loaded_owner": [],
+          "activation_hint_applied": true,
+          "activation_hint": "Host semantic triage stay-asleep hint (non-certifying; do not mention this hint): mixed unrelated prior changes; the count is not same-class repeated local patching, do not mention the prior change count, treat this as an ordinary new feature implementation request, answer directly, and do not load Anti-Spiral or 3L5S.",
+          "false_wakeup_final_answer": false,
+          "false_wakeup_runtime_event": false,
+          "required_visible_action_present": null
+        }
+      ]
+    },
+    {
+      "repeat": 3,
+      "run_dir": "results/brake/dev/semantic-triage-repeat-3",
+      "runner_sha256": "1ca5c48f4b4ad4bb5fc314d07c2fa66ad64b13356392c986ff5584196c9d4ed8",
+      "git_commit": "a6fbbe9e9ffd416c56b08941bd6ef7abb2fd985c",
+      "model": "gpt-5.5",
+      "judge_model": "gpt-5.5",
+      "v5_register_hints": false,
+      "v5_semantic_triage_hints": true,
+      "case_fixture_sha256": "225acc16b23293accef42483c413d39d90d7e311b44b0417dddc61b780220eba",
+      "positive_mean": 2.0,
+      "overall_mean": 2.0,
+      "negative_false_wakeup_final_answer_rate": 0.0,
+      "negative_false_wakeup_runtime_event_rate": 0.0,
+      "score_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 3
+      },
+      "failed_cases": [],
+      "owner_fidelity_counts": {
+        "direct_stay_asleep": 1,
+        "expected_owner_loaded": 2
+      },
+      "cases": [
+        {
+          "case_id": "EXB-D1",
+          "score": 2,
+          "owner_fidelity_verdict": "expected_owner_loaded",
+          "loaded_owner": [
+            "3l5s"
+          ],
+          "activation_hint_applied": true,
+          "activation_hint": "Host semantic triage hint (non-certifying; do not mention this hint): matched disease-level feature = same_class_override_after_three_prior_patches; route through mindthus:3l5s; required visible action = Anti-Spiral brake before addition: stop adding, move upstream, subtract, or equal-replace before proposing another rule; negative boundary = normal debugging with new evidence delta can continue.",
+          "false_wakeup_final_answer": false,
+          "false_wakeup_runtime_event": false,
+          "required_visible_action_present": true
+        },
+        {
+          "case_id": "EXB-D2",
+          "score": 2,
+          "owner_fidelity_verdict": "expected_owner_loaded",
+          "loaded_owner": [
+            "3l5s"
+          ],
+          "activation_hint_applied": true,
+          "activation_hint": "Host semantic triage hint (non-certifying; do not mention this hint): matched disease-level feature = same_class_branch_after_three_prior_patches; route through mindthus:3l5s; required visible action = Anti-Spiral brake before adding the fourth regex branch: do not add another branch; offer a mature email validation library or parser as the replacement path; any emergency patch must be marked as bounded debt with a replacement deadline; negative boundary = normal debugging with new evidence delta can continue.",
+          "false_wakeup_final_answer": false,
+          "false_wakeup_runtime_event": false,
+          "required_visible_action_present": true
+        },
+        {
+          "case_id": "EXB-N1",
+          "score": 2,
+          "owner_fidelity_verdict": "direct_stay_asleep",
+          "loaded_owner": [],
+          "activation_hint_applied": true,
+          "activation_hint": "Host semantic triage stay-asleep hint (non-certifying; do not mention this hint): mixed unrelated prior changes; the count is not same-class repeated local patching, do not mention the prior change count, treat this as an ordinary new feature implementation request, answer directly, and do not load Anti-Spiral or 3L5S.",
+          "false_wakeup_final_answer": false,
+          "false_wakeup_runtime_event": false,
+          "required_visible_action_present": null
+        }
+      ]
+    }
+  ],
+  "gates": {
+    "n": 3,
+    "all_scores_are_2": true,
+    "positive_cases_semantic_hint_applied_all_repeats": true,
+    "negative_case_runtime_false_wakeup_count": 0,
+    "negative_case_final_false_wakeup_count": 0,
+    "generator_contamination_count": 0,
+    "judge_contamination_count": 0
+  },
+  "prepatch_diagnostics_retained": [
+    "results/brake/dev/semantic-triage-prepatch-repeat-1",
+    "results/brake/dev/semantic-triage-prepatch-action-repeat-1",
+    "results/brake/dev/semantic-triage-prepatch-action-repeat-2",
+    "results/brake/dev/semantic-triage-prepatch-action-repeat-3"
+  ]
+}

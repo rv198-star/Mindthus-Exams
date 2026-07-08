@@ -1,0 +1,36 @@
+不要再补第四个分支。连续三个漏网格式都靠“加分支”修，说明问题不在 plus 别名本身，而是邮箱正则把 `local-part` 写窄了。
+
+应做等价替换：把邮箱 `@` 前的部分改成允许 `+` 的通用字符集，而不是新增一个 `|...+...` 分支。例如：
+
+```regex
+^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$
+```
+
+如果你当前正则类似：
+
+```regex
+^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$
+```
+
+只需要把前半段里的字符集从：
+
+```regex
+[A-Za-z0-9._%-]+
+```
+
+改成：
+
+```regex
+[A-Za-z0-9._%+-]+
+```
+
+这样 `user+tag@example.com`、`first.last+alias@example.co.uk` 都会通过，同时不继续扩大分支数量。验收用例至少补这几个：
+
+```text
+user+tag@example.com        pass
+first.last+alias@example.com pass
++tag@example.com            pass/拒绝取决于你们业务规则
+user+@example.com           pass/拒绝取决于你们业务规则
+user@example.com            pass
+user@@example.com           fail
+```

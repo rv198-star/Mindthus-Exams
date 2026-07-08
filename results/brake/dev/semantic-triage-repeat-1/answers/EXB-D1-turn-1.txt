@@ -1,0 +1,30 @@
+先别再加第四个 `!important` 覆盖了。连续三次靠覆盖压住同类对齐问题，说明问题已经不在“缺一条规则”，而在上游布局约束被新组件反复破坏。
+
+这次我建议做等量替换：删除前面临时覆盖里最窄、最脆的一条，把对齐规则收回到共同父容器或组件接口上，例如统一用：
+
+```css
+.page-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+```
+
+然后让新组件遵守这个容器约束，而不是给它单独补：
+
+```css
+.new-component {
+  margin-top: ... !important;
+}
+```
+
+如果必须先止血，也只加临时规则并标注删除条件：
+
+```css
+/* TEMP: remove after alignment is owned by the shared row layout */
+.page-row > .new-component {
+  align-self: center;
+}
+```
+
+不要用 `!important`。这类问题现在应该上移到布局所有者处理，否则每接一个组件都会继续破坏一次。

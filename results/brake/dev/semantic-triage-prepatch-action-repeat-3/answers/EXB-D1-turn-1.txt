@@ -1,0 +1,45 @@
+不建议继续加第 4 条 `!important` 覆盖。连续三次靠覆盖压新组件，说明问题大概率不在这次组件本身，而是在布局约束没有被稳定定义：谁负责宽度、间距、对齐基线、伸缩行为不清楚。
+
+这次我会先做“刹车式”处理：
+
+1. 暂停新增 `!important`
+2. 找到被新组件破坏的共同父级布局
+3. 删除或替换前面同类覆盖规则
+4. 在父级建立明确布局约束
+5. 只在组件边界做等价替换，不再提高 CSS 优先级
+
+可以先用这种方向替代覆盖规则：
+
+```css
+/* 在承载新旧组件的父级上固定对齐规则 */
+.page-section__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 子组件只服从容器，不自己抢布局 */
+.page-section__content > * {
+  min-width: 0;
+}
+```
+
+如果当前确实是某个新组件自带 margin/padding 把整体顶歪，优先做等量替换：
+
+```css
+.new-component {
+  margin: 0;
+  align-self: center;
+}
+```
+
+而不是：
+
+```css
+.new-component {
+  margin-top: -8px !important;
+}
+```
+
+把相关 DOM/CSS 片段给我，我可以直接帮你把“第 4 个覆盖补丁”改成一个上游布局修复规则。

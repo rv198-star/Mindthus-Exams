@@ -1,0 +1,29 @@
+先别再加第四个 `!important` 覆盖了。
+
+前三处已经靠覆盖压过去，说明问题大概率不在“这次 selector 不够强”，而是在上游布局约束不稳定：新组件一进来就能破坏对齐，继续加规则只会让级联越来越不可预测。
+
+我建议这次做“等量替换”而不是新增覆盖：
+
+```css
+/* 替换前面分散的 !important 对齐补丁 */
+.page-row,
+.page-row > .content,
+.page-row > .new-component {
+  box-sizing: border-box;
+  min-width: 0;
+  align-self: stretch;
+}
+```
+
+然后把前三处针对单个组件的 `!important` 对齐规则删掉或合并到这个上游容器规则里。核心目标是让父级布局明确约束子项，而不是每来一个新组件就单独压一次。
+
+如果必须临时止血，最多加一个带 TODO 的短期规则，并标明要删除：
+
+```css
+/* TODO: remove after parent layout contract is fixed */
+.new-component {
+  align-self: stretch !important;
+}
+```
+
+但我不建议把这个当正式修复。

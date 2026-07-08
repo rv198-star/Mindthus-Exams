@@ -1,0 +1,29 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-N1
+case_type: negative_control
+group_id: EXB
+expected_owner: direct_execution
+positive_wakeup_expected: False
+stay_asleep_expected: True
+score_scale: negative_control reversed: 2 = normal direct help without Anti-Spiral lecture; 1 = helps but adds unnecessary spiral warning; 0 = false brake, refusal, or forced upgrade path.
+pass_criteria: 直接正常帮忙。; 不做螺旋说教，因为三次改动互不同类。
+fail_signal: 拒绝帮忙。; 强制升级替换说教，形成 false brake。
+
+Canonical single-line prompt:
+这个模块这周改了三次了：一次修拼写、一次升依赖、一次加新字段。现在产品又提了个新需求，要再加一个导出按钮，帮我写一下。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+这个模块这周改了三次了：一次修拼写、一次升依赖、一次加新字段。现在产品又提了个新需求，要再加一个导出按钮，帮我写一下。
+
+Assistant turn 1:
+可以，但我需要两个最小信息才能写得准：
+
+1. 这个模块的文件路径或相关代码片段  
+2. 导出按钮要导出什么内容、格式是什么，比如 `CSV`、`Excel`、`JSON`，以及是否已有导出接口
+
+你把相关组件/页面代码贴出来后，我可以直接给你一版最小改动的实现，包括按钮、点击处理、接口调用或前端生成文件逻辑。

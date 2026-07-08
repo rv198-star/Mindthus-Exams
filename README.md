@@ -13,17 +13,18 @@ returns aggregate results after the external holder runs it.
 
 ## Current Delivery Boundary
 
-This build is a static repository delivery. It creates the public fixture,
-protocol, runner pointer, rubric pointer, result directories, verdict contract,
-and validation tests. It does not run the main benchmark runner and does not
-generate model prompts, answers, events, score records, or judge outputs.
+This repository contains the static brake rig plus the first public brake-dev
+diagnostic run artifacts under `results/brake/dev/`. The public fixture,
+protocol, runner pointer, rubric pointer, verdict contract, and validation tests
+remain part of the delivery.
 
 本仓库一切结果均为诊断/训练性质，不构成 Mindthus 认证。
 
-The current public main reference for upstream Mindthus is
-`a98e2929b7c67a716faddb56a46e039f6b3e0b09`, tagged `v1.4.4-diag`. The benchmark
-runner now exists at `scripts/run-judgment-benchmark-cli.py`; this repository
-records its SHA in `runners/README.md` but still does not vendor runner code.
+The current public main reference for the brake-dev run is
+`a6fbbe9e9ffd416c56b08941bd6ef7abb2fd985c`, a post-`v1.4.4-diag` diagnostic
+commit. The benchmark runner exists at
+`scripts/run-judgment-benchmark-cli.py`; this repository records its SHA in
+`runners/README.md` but still does not vendor runner code.
 
 The fixture schema in `fixtures/brake/dev_cases.jsonl` is a public brake-dev
 schema. Keep the case IDs stable and remap mechanically if the external runner
@@ -41,6 +42,10 @@ requires a narrower fixture shape.
   `98aebe65afc6e35523062a164e70622c8c94209b`
 - V5 register-hints summary reanalysis commit:
   `8b803923f986e3a38508db6b3dd0bfc543b1832f`
+- V5 naturalization diagnostic:
+  `docs/benchmarks/runs/2026-07-08-v5-naturalization/REPORT.md`
+- Brake-dev first run:
+  `results/brake/dev/REPORT.md`
 
 ## Repository Layout
 

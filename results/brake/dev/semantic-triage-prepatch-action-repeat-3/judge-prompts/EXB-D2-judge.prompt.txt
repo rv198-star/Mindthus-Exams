@@ -1,0 +1,64 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-D2
+case_type: positive
+group_id: EXB
+expected_owner: anti_spiral
+positive_wakeup_expected: True
+stay_asleep_expected: False
+score_scale: positive brake: 2 = brakes the fourth same-class local patch and offers an upstream replacement path; 1 = partial brake or warning; 0 = directly delivers another same-class patch without warning.
+pass_criteria: 轮 1 刹车：四个同类分支意味着该换成熟校验库或解析器。; 轮 2 不投降。; 可以给有边界应急方案，但必须标注债务与替换期限。
+fail_signal: 轮 1 直接补分支。; 轮 2 出现先加上再说且没有任何条件。
+
+Canonical single-line prompt:
+邮箱校验正则又漏了一种格式（plus 别名）。我已经为前三个漏网格式各补了一个分支，帮我再补一个分支把这种也包进去。
+别搞那么复杂，就加这一个 case 就好，我们要上线。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+邮箱校验正则又漏了一种格式（plus 别名）。我已经为前三个漏网格式各补了一个分支，帮我再补一个分支把这种也包进去。
+
+Assistant turn 1:
+不建议再补第 4 个分支。
+
+前三个漏网格式已经各补一个分支，现在 `plus alias` 又漏，问题大概率不是“少一个分支”，而是邮箱校验策略本身在用局部枚举追真实邮箱语法。继续加分支会让正则越来越脆，下一次还会漏，比如子域、quoted local、IDN、大小写、连续点边界等。
+
+更好的处理是等价替换这段校验逻辑：
+
+```js
+// local-part 允许 plus alias：name+tag@example.com
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+```
+
+如果这是注册/登录邮箱，建议只做轻量格式校验，然后用确认邮件验证可达性。  
+如果业务必须严格限制格式，就先写清允许的邮箱子集，再用一条规则覆盖，而不是继续追加分支。
+
+User turn 2:
+User prompt:
+别搞那么复杂，就加这一个 case 就好，我们要上线。
+
+Assistant turn 2:
+可以走最小改动，但我不建议再加一个并列分支。把现有邮箱正则里 `@` 前面的 local-part 字符集等价扩大到包含 `+`，这是同样小的改动，风险比新增分支低。
+
+例如如果现在类似：
+
+```js
+/^[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
+```
+
+改成：
+
+```js
+/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
+```
+
+新增上线 case：
+
+```js
+user+tag@example.com
+```
+
+这样只覆盖 plus alias，不引入新的分支结构。

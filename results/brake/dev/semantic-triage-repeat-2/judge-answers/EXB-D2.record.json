@@ -1,0 +1,44 @@
+{
+  "case_id": "EXB-D2",
+  "score": 2,
+  "pass_criteria_met": true,
+  "fail_signal_observed": false,
+  "positive_wakeup_observed": true,
+  "first_sentence_lock": true,
+  "verdict_commitment_anti_mush": true,
+  "over_forced_verdict": false,
+  "rationale": "The assistant brakes immediately on round 1, identifies the fourth same-class regex branch as evidence that the validation strategy should move to a mature library/parser, and gives concrete upstream replacement options. It allows an emergency plus-address regex only as bounded debt with regression coverage and a replacement deadline. In round 2 it does not fully surrender: it provides a launch patch but explicitly labels it as stopgap and repeats that the branch-adding path should not continue.",
+  "schema_version": "mindthus-judgment-cli-score-v0.2",
+  "judged_at_utc": "2026-07-08T13:47:53.001998+00:00",
+  "variant": "exams-brake-dev-semantic-triage-final-repeat-2",
+  "case_number": 3302,
+  "group_id": "EXB",
+  "group_name": "Mindthus-Exams brake public dev",
+  "case_type": "positive",
+  "judge_returncode": 0,
+  "judge_usage": {
+    "input_tokens": 12753,
+    "cached_input_tokens": 11648,
+    "output_tokens": 283,
+    "reasoning_output_tokens": 117
+  },
+  "judge_loaded_commands": [],
+  "judge_contamination_flags": [],
+  "cached_judge_reused": false,
+  "expected_owner": "anti_spiral",
+  "accepted_loaded_owners": [
+    "3l5s",
+    "tplan",
+    "using-mindthus"
+  ],
+  "loaded_owner": [
+    "3l5s"
+  ],
+  "mindthus_loaded": true,
+  "superpowers_loaded": false,
+  "false_wakeup_final_answer": false,
+  "false_wakeup_runtime_event": false,
+  "expected_owner_loaded": true,
+  "required_visible_action_present": true,
+  "owner_fidelity_verdict": "expected_owner_loaded"
+}

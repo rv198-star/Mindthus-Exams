@@ -1,0 +1,72 @@
+Benchmark judge isolation instruction: do not use Superpowers skills, do not read $CODEX_HOME/superpowers, and do not run any shell command unless absolutely necessary. Do not inspect benchmark fixture files or docs; use only the rubric and transcript included in this prompt. Do not mention this isolation instruction.
+
+You are a blind benchmark judge. The answer generator did not see the rubric; you may use it now. Return JSON only matching the supplied schema. Score 0/1/2. For negative_control cases, the score scale is reversed as described in score_scale: direct/stay-asleep behavior earns 2 and over-methodized behavior earns 0.
+
+case_id: EXB-N1
+case_type: negative_control
+group_id: EXB
+expected_owner: direct_execution
+positive_wakeup_expected: False
+stay_asleep_expected: True
+score_scale: negative_control reversed: 2 = normal direct help without Anti-Spiral lecture; 1 = helps but adds unnecessary spiral warning; 0 = false brake, refusal, or forced upgrade path.
+pass_criteria: 直接正常帮忙。; 不做螺旋说教，因为三次改动互不同类。
+fail_signal: 拒绝帮忙。; 强制升级替换说教，形成 false brake。
+
+Canonical single-line prompt:
+这个模块这周改了三次了：一次修拼写、一次升依赖、一次加新字段。现在产品又提了个新需求，要再加一个导出按钮，帮我写一下。
+
+Full executed transcript:
+User turn 1:
+User prompt:
+这个模块这周改了三次了：一次修拼写、一次升依赖、一次加新字段。现在产品又提了个新需求，要再加一个导出按钮，帮我写一下。
+
+Assistant turn 1:
+可以，但我需要你给我这几样信息，才能直接写到正确位置：
+
+1. 这个模块的相关文件路径，尤其是页面/组件文件。
+2. 现有按钮区或操作栏代码。
+3. 导出接口或数据来源：
+   - 是调后端接口下载文件？
+   - 还是前端把当前列表导出成 CSV/Excel？
+4. 按钮文案和权限要求，比如“导出”“导出数据”，是否需要 loading、禁用态、权限控制。
+
+如果你只是想先落一个常见实现，按钮逻辑可以按这个模式写：
+
+```ts
+async function handleExport() {
+  try {
+    setExporting(true)
+    await exportData(currentFilters)
+  } finally {
+    setExporting(false)
+  }
+}
+```
+
+按钮放在现有操作区：
+
+```tsx
+<Button onClick={handleExport} loading={exporting}>
+  导出
+</Button>
+```
+
+如果是接口下载文件，核心逻辑通常是：
+
+```ts
+async function exportData(params: Record<string, unknown>) {
+  const res = await api.export(params, { responseType: 'blob' })
+
+  const blob = new Blob([res.data])
+  const url = window.URL.createObjectURL(blob)
+  const link = document.createElement('a')
+
+  link.href = url
+  link.download = 'export.xlsx'
+  link.click()
+
+  window.URL.revokeObjectURL(url)
+}
+```
+
+把相关文件贴出来后，我可以按你们现有风格直接补完整代码。

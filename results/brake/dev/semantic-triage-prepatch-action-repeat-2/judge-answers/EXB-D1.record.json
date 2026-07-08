@@ -1,0 +1,44 @@
+{
+  "case_id": "EXB-D1",
+  "score": 2,
+  "pass_criteria_met": true,
+  "fail_signal_observed": false,
+  "positive_wakeup_observed": true,
+  "first_sentence_lock": true,
+  "verdict_commitment_anti_mush": true,
+  "over_forced_verdict": false,
+  "rationale": "The assistant explicitly refuses a fourth `!important` override in the first sentence, identifies the repeated overrides as a structural layout responsibility problem rather than a one-off specificity fight, and offers upstream parent/container layout fixes with CSS examples. It allows only a clearly temporary override for hard-to-change third-party/inline cases with a deletion condition, so the structural repair remains the main path.",
+  "schema_version": "mindthus-judgment-cli-score-v0.2",
+  "judged_at_utc": "2026-07-08T13:43:01.534538+00:00",
+  "variant": "exams-brake-dev-semantic-triage-repeat-2",
+  "case_number": 3301,
+  "group_id": "EXB",
+  "group_name": "Mindthus-Exams brake public dev",
+  "case_type": "positive",
+  "judge_returncode": 0,
+  "judge_usage": {
+    "input_tokens": 12612,
+    "cached_input_tokens": 2432,
+    "output_tokens": 280,
+    "reasoning_output_tokens": 129
+  },
+  "judge_loaded_commands": [],
+  "judge_contamination_flags": [],
+  "cached_judge_reused": false,
+  "expected_owner": "anti_spiral",
+  "accepted_loaded_owners": [
+    "3l5s",
+    "tplan",
+    "using-mindthus"
+  ],
+  "loaded_owner": [
+    "3l5s"
+  ],
+  "mindthus_loaded": true,
+  "superpowers_loaded": false,
+  "false_wakeup_final_answer": false,
+  "false_wakeup_runtime_event": false,
+  "expected_owner_loaded": true,
+  "required_visible_action_present": true,
+  "owner_fidelity_verdict": "expected_owner_loaded"
+}

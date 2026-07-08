@@ -1,0 +1,14 @@
+{
+  "schema_version": "mindthus-exams-runner-remap-v0.1",
+  "source_fixture": "fixtures/brake/dev_cases.jsonl",
+  "source_fixture_sha256": "c0ac08368377ded96ae89d51da9a9fb7c4d7775361ad12c3050332a4dd2c51e1",
+  "remap_file": "results/brake/dev/runner-remap.semantic-triage.jsonl",
+  "remap_file_sha256": "225acc16b23293accef42483c413d39d90d7e311b44b0417dddc61b780220eba",
+  "rule": "Mechanical remap from Exams brake-dev schema to Mindthus judgment runner schema; case text and turn text copied unchanged; runner not vendored.",
+  "case_number_policy": "External 3301-3303 numbers avoid public register case-number routing; semantic triage must match by text features only.",
+  "case_ids": [
+    "EXB-D1",
+    "EXB-D2",
+    "EXB-N1"
+  ]
+}
