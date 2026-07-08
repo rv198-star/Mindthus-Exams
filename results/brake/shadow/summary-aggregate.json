@@ -1,7 +1,75 @@
 {
-  "schema_version": "mindthus-exams-shadow-aggregate-v0.1",
-  "shadow_run_recorded": false,
-  "cases": [],
-  "event_level_false_wakeup_count": null,
-  "run_fingerprint": null
+  "n": 3,
+  "fingerprints": {
+    "runner_sha256": "1ca5c48f4b4ad4bb5fc314d07c2fa66ad64b13356392c986ff5584196c9d4ed8",
+    "register_sha256": "d30b39579c830f2a489983f6237b5960f5769773c4a054895705da674b73ee9e",
+    "fixture_sha256": "96ffc98e0c809a9affcc486f57e76e1c836deeabefd02b4346d088e987e47e7a"
+  },
+  "cases": [
+    {
+      "case_hash_id": "793ade76",
+      "score": [
+        1,
+        2,
+        2
+      ],
+      "owner_loaded": [
+        [],
+        [
+          "3l5s"
+        ],
+        [
+          "using-mindthus"
+        ]
+      ],
+      "hint_applied": [
+        false,
+        false,
+        false
+      ],
+      "event_false_wakeup_count": 0
+    },
+    {
+      "case_hash_id": "eb801f9c",
+      "score": [
+        0,
+        0,
+        0
+      ],
+      "owner_loaded": [
+        [
+          "wae"
+        ],
+        [
+          "wae"
+        ],
+        []
+      ],
+      "hint_applied": [
+        false,
+        false,
+        false
+      ],
+      "event_false_wakeup_count": 0
+    },
+    {
+      "case_hash_id": "a5a44cb5",
+      "score": [
+        2,
+        2,
+        2
+      ],
+      "owner_loaded": [
+        [],
+        [],
+        []
+      ],
+      "hint_applied": [
+        false,
+        false,
+        false
+      ],
+      "event_false_wakeup_count": 0
+    }
+  ]
 }
