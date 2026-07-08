@@ -1,0 +1,7 @@
+{
+  "schema_version": "mindthus-exams-shadow-aggregate-v0.1",
+  "shadow_run_recorded": false,
+  "cases": [],
+  "event_level_false_wakeup_count": null,
+  "run_fingerprint": null
+}

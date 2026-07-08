@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Shadow-set leakage guard: only aggregate summaries belong here.
+results/*/shadow/*
+!results/*/shadow/
+!results/*/shadow/summary-aggregate.json
+results/*/shadow/prompts/
+results/*/shadow/answers/
+results/*/shadow/raw-responses.jsonl
+results/*/shadow/judge-prompts/
