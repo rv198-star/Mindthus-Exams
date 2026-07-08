@@ -20,10 +20,27 @@ generate model prompts, answers, events, score records, or judge outputs.
 
 本仓库一切结果均为诊断/训练性质，不构成 Mindthus 认证。
 
-The fixture schema in `fixtures/brake/dev_cases.jsonl` is provisional because
-the named main runner, `scripts/run-judgment-benchmark-cli.py`, is not present
-in the public `rv198-star/Mindthus` repository at inspection time. The cases are
-kept stable and remappable when the formal runner schema is published.
+The current public main reference for upstream Mindthus is
+`a98e2929b7c67a716faddb56a46e039f6b3e0b09`, tagged `v1.4.4-diag`. The benchmark
+runner now exists at `scripts/run-judgment-benchmark-cli.py`; this repository
+records its SHA in `runners/README.md` but still does not vendor runner code.
+
+The fixture schema in `fixtures/brake/dev_cases.jsonl` is a public brake-dev
+schema. Keep the case IDs stable and remap mechanically if the external runner
+requires a narrower fixture shape.
+
+## Upstream Audit References
+
+- V5 targeted validation:
+  `docs/benchmarks/runs/2026-07-08-v5-targeted-validation/REPORT.md`
+- V5 targeted validation base commit:
+  `b36830626df5d61b9ffe4ec8d2a04f695e61e58c`
+- V5 register-hints diagnostic:
+  `docs/benchmarks/runs/2026-07-08-v5-register-hints-diagnostic/REPORT.md`
+- V5 register-hints raw answer generation commit:
+  `98aebe65afc6e35523062a164e70622c8c94209b`
+- V5 register-hints summary reanalysis commit:
+  `8b803923f986e3a38508db6b3dd0bfc543b1832f`
 
 ## Repository Layout
 

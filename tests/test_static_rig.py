@@ -153,6 +153,55 @@ class StaticRigTests(unittest.TestCase):
             with self.subTest(term=term):
                 self.assertIn(term, workflow)
 
+    def test_runner_reference_is_backfilled(self) -> None:
+        runner = (REPO_ROOT / "runners/README.md").read_text(encoding="utf-8")
+
+        self.assertIn(
+            "973b9ae9cbb985289c8e2447531b055b80ee8621236bdc0f2bb152a31b1057a0",
+            runner,
+        )
+        self.assertIn("a98e2929b7c67a716faddb56a46e039f6b3e0b09", runner)
+        self.assertIn("v1.4.4-diag", runner)
+        self.assertNotIn("4e11d650", runner)
+        self.assertNotIn("does not contain", runner)
+
+    def test_rubric_version_backfill_records_four_tuple(self) -> None:
+        rubric = (REPO_ROOT / "rubric/RUBRIC_VERSION.md").read_text(encoding="utf-8")
+
+        required_terms = [
+            "Mindthus V5 Certification Protocol",
+            "docs/benchmarks/v5-certification-protocol.md",
+            "a98e2929b7c67a716faddb56a46e039f6b3e0b09",
+            "v1.4.4-diag",
+            "125ae8fabc4e520e70a8e296ead7ceb234d15b91f9dcefa6f503e304cc2d4c74",
+            "blind benchmark judge",
+            "answer generator did not see the rubric",
+            "gpt-5.5",
+        ]
+        for term in required_terms:
+            with self.subTest(term=term):
+                self.assertIn(term, rubric)
+
+        self.assertNotIn("blocked until", rubric)
+        self.assertNotIn("not supplied", rubric)
+
+    def test_readme_records_current_main_and_v5_audit_refs(self) -> None:
+        readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+
+        required_terms = [
+            "a98e2929b7c67a716faddb56a46e039f6b3e0b09",
+            "v1.4.4-diag",
+            "2026-07-08-v5-targeted-validation",
+            "2026-07-08-v5-register-hints-diagnostic",
+            "98aebe65afc6e35523062a164e70622c8c94209b",
+            "8b803923f986e3a38508db6b3dd0bfc543b1832f",
+        ]
+        for term in required_terms:
+            with self.subTest(term=term):
+                self.assertIn(term, readme)
+
+        self.assertNotIn("is not present", readme)
+
 
 if __name__ == "__main__":
     unittest.main()

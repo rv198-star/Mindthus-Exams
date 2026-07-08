@@ -20,12 +20,12 @@ The repository is a public exam harness wrapper. It contains public fixtures and
 protocol metadata only, while consuming the main `rv198-star/Mindthus` release
 pack and externally frozen runner/rubric references.
 
-The development fixture uses a provisional JSONL schema because the named main
-runner, `scripts/run-judgment-benchmark-cli.py`, is not present in the public
-main repository at inspection time. The schema keeps stable case identifiers,
-multi-turn prompts, expected owner metadata, scoring anchors, and leakage-safe
-tags so it can be mechanically remapped once the formal runner schema is
-published.
+The development fixture uses a repository-local public JSONL schema for the
+brake development set. The external runner now exists in the public main
+repository, but this repository still keeps stable case identifiers, multi-turn
+prompts, expected owner metadata, scoring anchors, and leakage-safe tags so the
+fixture can be mechanically remapped if the runner requires a narrower case
+shape.
 
 ## Files
 
