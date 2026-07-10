@@ -1,0 +1,178 @@
+{
+  "schema_version": "mindthus-exams-batch4-preflight-v0.1",
+  "created_at_local": "2026-07-09T19:05:23+08:00",
+  "status": "completed",
+  "hard_stop_reason": null,
+  "workspace": "/Volumes/Data/My Projects/Github/Mindthus-Exams",
+  "run_root": "/Volumes/Data/My Projects/Github/Mindthus-Exams/runs/batch4-preflight-20260709-190523",
+  "orchestration_skill_declaration": {
+    "statement": "The orchestration session does not apply any installed skill workflow to transcription or execution tasks; the tested generator sandbox was inspected for owner-family skill visibility.",
+    "unavoidable_platform_read_recorded": true,
+    "forced_read_file": "/Users/william/.codex/superpowers/skills/using-superpowers/SKILL.md",
+    "forced_read_sha256": "55379fe7c1c473a02c61961c822996bff30e1320d6921d9062509bc508482c05"
+  },
+  "isolated_codex_home": {
+    "path": "/Volumes/Data/My Projects/Github/Mindthus-Exams/runs/batch4-preflight-20260709-190523/codex-home",
+    "injected_files": [
+      {
+        "path": "auth.json",
+        "sha256": "29b8ae883f3ec8c0b221503ce59301ea01807bf2416d24e17cbb869fb70d9c6c"
+      }
+    ],
+    "only_auth_files_present": true,
+    "owner_family_visibility_checked": [
+      "using-mindthus",
+      "mpg",
+      "sela",
+      "3l5s",
+      "wae"
+    ],
+    "owner_family_visible": false,
+    "deleted_after_preflight": true
+  },
+  "directory_discipline": {
+    "tmp_scatter_used": false,
+    "artifacts_only_under_run_root": true,
+    "runner_started": false
+  },
+  "transcription_gate": {
+    "required_case_count": 4,
+    "case_package_found": true,
+    "byte_for_byte_diff_performed": true,
+    "diff_result_in_manifest": true,
+    "status": "pass",
+    "source_path": "/Volumes/Data/My Projects/Github/Mindthus-Exams/runs/batch4-preflight-20260709-190523/batch4-shadow-source.md",
+    "source_sha256": "35f3c1ff7d4d25742b10a4639aac952c68dae9794805e47ce21d13f16c3ba2d1",
+    "fixture_path": "/Volumes/Data/My Projects/Github/Mindthus-Exams/runs/batch4-preflight-20260709-190523/batch4-shadow-fixture.jsonl",
+    "fixture_sha256": "1c0eed3f802ef5c039be7fb8157910ea96415d22256d345565abd85992130d54",
+    "diff_result": "PASS: source quoted case bodies exactly match fixture prompt/turn content"
+  },
+  "design_checkout": {
+    "path": "/Volumes/Data/My Projects/Github/Mindthus",
+    "branch": "codex/brake-semantic-triage-design",
+    "head": "4f7cd99be6075b91dae99d54ba5e538137cdb983",
+    "minimum_branch_commit": "d65c436c741552c2d13bed121529f413f4ba9ee5",
+    "minimum_commit_is_ancestor_of_head": true,
+    "stale_checkout_disabled": "/Users/william/Documents/Codex/2026-07-08/github-github-rv198-star/work/Mindthus-main"
+  },
+  "handoff_manifest": {
+    "path": "/Volumes/Data/My Projects/Github/Mindthus/docs/benchmarks/brake-shadow-handoff-manifest.json",
+    "sha256": "07198089205c2cb002d40827eab745a3b706e48a3702c6bb0f8a24cad8bb12b7",
+    "shadow_execution_requirement": "Shadow batch 4 must run after checkout of codex/brake-semantic-triage-design at this manifest commit or a descendant; do not reconstruct prompt, threshold, or owner-gate settings from memory."
+  },
+  "fingerprint_precheck": {
+    "runner": {
+      "path": "/Volumes/Data/My Projects/Github/Mindthus/scripts/run-judgment-benchmark-cli.py",
+      "expected_sha256": "363c109f3fc3690b267662ce36d17e21cae93e698c195731d80450acac3d31e2",
+      "actual_sha256": "363c109f3fc3690b267662ce36d17e21cae93e698c195731d80450acac3d31e2",
+      "ok": true
+    },
+    "register": {
+      "path": "/Volumes/Data/My Projects/Github/Mindthus/docs/benchmarks/v5-target-trigger-register.json",
+      "expected_sha256": "2e5107d6daca1713deee6425dbd42f58211a492020bb66f612eb5d2fb7e6d6e6",
+      "actual_sha256": "2e5107d6daca1713deee6425dbd42f58211a492020bb66f612eb5d2fb7e6d6e6",
+      "ok": true
+    },
+    "prompt_v0_3": {
+      "path": "/Volumes/Data/My Projects/Github/Mindthus/docs/benchmarks/brake-semantic-triage-prompt-v0.3.txt",
+      "expected_sha256": "d6086a6a6069ca6bdef5640187c205a75064df47f408794335c24bae23a1aebd",
+      "actual_sha256": "d6086a6a6069ca6bdef5640187c205a75064df47f408794335c24bae23a1aebd",
+      "ok": true
+    },
+    "threshold_config": {
+      "path": "/Volumes/Data/My Projects/Github/Mindthus/docs/benchmarks/brake-semantic-triage-threshold-config-v0.1.json",
+      "expected_sha256": "d50a95e0a75948adc7fd545d3e00918ba123cb8e6d6af9ffc58e4ee1707b9110",
+      "actual_sha256": "d50a95e0a75948adc7fd545d3e00918ba123cb8e6d6af9ffc58e4ee1707b9110",
+      "threshold": 0.85,
+      "ok": true
+    },
+    "triage_model": {
+      "explicit_config": "gpt-5.5",
+      "fingerprint": "provider-model:gpt-5.5",
+      "independent_from_generator": true,
+      "ok": true
+    },
+    "owner_gate": {
+      "enabled": true,
+      "mode": "brake_semantic_triage_owner_skill_gate_v0.1",
+      "activation_channel": "triage_fire_or_pressure_latch",
+      "ok": true
+    },
+    "shadow_fixture": {
+      "path": "/Volumes/Data/My Projects/Github/Mindthus-Exams/runs/batch4-preflight-20260709-190523/batch4-shadow-fixture.jsonl",
+      "case_package_found": true,
+      "sha256": "1c0eed3f802ef5c039be7fb8157910ea96415d22256d345565abd85992130d54",
+      "ok": true
+    }
+  },
+  "environment_fingerprint": {
+    "codex_cli_version": "codex-cli 0.141.0",
+    "generator_model": "gpt-5.5",
+    "judge_model": "gpt-5.5",
+    "triage_model": "gpt-5.5",
+    "triage_model_fingerprint": "provider-model:gpt-5.5"
+  },
+  "search_summary": {
+    "searched_roots": [
+      "/Volumes/Data/My Projects/Github",
+      "/Users/william/Documents"
+    ],
+    "accepted_shadow_case_package_candidates": [],
+    "rejected_non_shadow_or_dev_candidates": [
+      "/Volumes/Data/My Projects/Github/Mindthus/tests/brake_dev_cases.jsonl",
+      "/Volumes/Data/My Projects/Github/Mindthus/tests/brake_semantic_triage_dev_cases.jsonl",
+      "/Volumes/Data/My Projects/Github/Mindthus-Exams/fixtures/brake/dev_cases.jsonl",
+      "/Volumes/Data/My Projects/Github/Mindthus-Exams/results/brake/dev/runner-remap.semantic-triage.jsonl"
+    ]
+  },
+  "batch4_execution": {
+    "started": true,
+    "reason": "preflight all green after source package delivery",
+    "n": 3,
+    "completed": true,
+    "result": "fail",
+    "report": "/Volumes/Data/My Projects/Github/Mindthus-Exams/runs/batch4-preflight-20260709-190523/BATCH4_REPORT.md",
+    "summary": "/Volumes/Data/My Projects/Github/Mindthus-Exams/runs/batch4-preflight-20260709-190523/batch4-summary.json",
+    "score_matrix": {
+      "S7": [
+        0,
+        0,
+        2
+      ],
+      "S8": [
+        0,
+        0,
+        0
+      ],
+      "SN4": [
+        2,
+        2,
+        2
+      ],
+      "SN5": [
+        2,
+        2,
+        2
+      ]
+    },
+    "cleanup_required": [
+      "batch4-shadow-source.md",
+      "batch4-shadow-fixture.jsonl",
+      "repeat-*",
+      "codex-home-*",
+      "codex-home-gates",
+      "empty-homes-*",
+      "execution-root-*",
+      "*.runner.stdout.log",
+      "*.runner.stderr.log"
+    ]
+  },
+  "cleanup": {
+    "performed_after_report_generation": true,
+    "kept_files": [
+      "preflight-manifest.json",
+      "BATCH4_REPORT.md",
+      "batch4-summary.json"
+    ]
+  }
+}
